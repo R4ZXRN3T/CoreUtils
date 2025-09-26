@@ -1,6 +1,11 @@
 package org.R4ZXRN3T;
 
 public class ArrayUtils {
+	public static <T extends Comparable<T>> T[] sort(T[] inputArray) {
+		MergeSorts.mergeSort(inputArray, 0, inputArray.length - 1);
+		return inputArray;
+	}
+
 	public static int[] sort(int[] inputArray) {
 		MergeSorts.mergeSort(inputArray, 0, inputArray.length - 1);
 		return inputArray;

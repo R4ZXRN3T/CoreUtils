@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class SortBenchmarkTests {
 	private static final int TOTAL_RUNS = 100;
-	private static final int SORT_ARRAY_SIZE = 250_000;
+	private static final int SORT_ARRAY_SIZE = 250_0000;
 
 	@Test
 	void benchmarkSort() {
@@ -14,7 +14,12 @@ public class SortBenchmarkTests {
 		double[] arraySortResult = new double[TOTAL_RUNS];
 
 		for (int i = 0; i < coreUtilsResult.length; i++) {
-			int[] input = new Random().ints(SORT_ARRAY_SIZE, 0, SORT_ARRAY_SIZE).toArray();
+			// int[] input = new Random().ints(SORT_ARRAY_SIZE, 0, SORT_ARRAY_SIZE).toArray();
+			Random rnd = new Random();
+			Integer[] input = new Integer[SORT_ARRAY_SIZE];
+			for (int j = 0; j < SORT_ARRAY_SIZE; j++) {
+				input[j] = rnd.nextInt();
+			}
 
 			long startTimeCoreUtils = System.nanoTime();
 			ArrayUtils.sort(input);
