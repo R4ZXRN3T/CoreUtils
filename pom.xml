@@ -38,6 +38,11 @@
 					</execution>
 				</executions>
 				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>org.R4ZXRN3T.Prompts</mainClass>
+						</manifest>
+					</archive>
 					<outputDirectory>${project.basedir}</outputDirectory>
 				</configuration>
 			</plugin>
