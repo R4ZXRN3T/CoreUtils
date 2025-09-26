@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class SortBenchmarkTests {
 	private static final int TOTAL_RUNS = 100;
-	private static final int SORT_ARRAY_SIZE = 250_0000;
+	private static final int SORT_ARRAY_SIZE = 250_000;
 
 	@Test
 	void benchmarkSort() {
