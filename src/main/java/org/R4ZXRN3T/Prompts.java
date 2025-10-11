@@ -1,6 +1,7 @@
 package org.R4ZXRN3T;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * Utility class providing various prompt methods for user input.
@@ -16,21 +17,26 @@ public class Prompts {
 	 * @throws RuntimeException if an unexpected error is encountered (should not happen)
 	 */
 	public static boolean confirmationPrompt(String promptMessage) {
-		IO.print("\033[s");
+		System.out.print("\033[s");
 
 		String input = null;
 
+		Scanner sc = new Scanner(System.in);
+
 		do {
-			if (input != null) IO.print("\033[u\033[0J");
-			IO.print(promptMessage);
-			input = IO.readln();
+			if (input != null) System.out.print("\033[u\033[0J");
+			System.out.print(promptMessage);
+			input = sc.nextLine();
 		} while (!(input.equalsIgnoreCase("y") || input.equalsIgnoreCase("n")));
 
-		return switch (input.toLowerCase()) {
-			case "y" -> true;
-			case "n" -> false;
-			default -> throw new RuntimeException("How the fuck did this happen?");
-		};
+		switch (input.toLowerCase()) {
+			case "y":
+				return true;
+			case "n":
+				return false;
+			default:
+				throw new RuntimeException("How the fuck did this happen?");
+		}
 	}
 
 	/**
@@ -64,14 +70,16 @@ public class Prompts {
 	 * @return the user's input, guaranteed to be one of the allowed inputs
 	 */
 	private static String customPrompt(String promptMessage, boolean ignoreCase, String... allowedInputs) {
-		IO.print("\033[s");
+		System.out.print("\033[s");
 
 		String input = null;
 
+		Scanner sc = new Scanner(System.in);
+
 		do {
-			if (input != null) IO.print("\033[u\033[0J");
-			IO.print(promptMessage);
-			input = IO.readln();
+			if (input != null) System.out.print("\033[u\033[0J");
+			System.out.print(promptMessage);
+			input = sc.nextLine();
 		} while (Arrays.stream(allowedInputs).noneMatch(ignoreCase ? input::equalsIgnoreCase : input::equals));
 
 		return input;
@@ -81,10 +89,10 @@ public class Prompts {
 	 * Demonstrates usage of the prompt methods.
 	 * Not intended for production use.
 	 */
-	static void main() {
+	public static void main(String[] args) {
 		String result = customPromptIgnoreCase("Please Enter what you want: (bla/blah/blahhh)   ", "bla", "blah", "blahhh");
 		boolean sure = confirmationPrompt("Are you sure you want " + result + "? (y/n)");
-		if (sure) IO.println("Ok here: Aquired 1 " + result);
-		else IO.println("OK");
+		if (sure) System.out.println("Ok here: Aquired 1 " + result);
+		else System.out.println("OK");
 	}
 }
